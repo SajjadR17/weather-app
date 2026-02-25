@@ -4,6 +4,7 @@
   justify-content: space-between;
   margin-bottom: 50px;
   margin-top: 40px;
+  color: #a0a5b8;
 }
 
 .search-sec {
@@ -13,9 +14,9 @@
 
 input {
   padding: 10px;
-  background-color: #1a293b;
+  background-color: rgba(20, 24, 45, 0.8);
   color: #fff;
-  border: 1px solid #fff;
+  border: 1px solid #a0a5b8;
   height: 40px;
   border-radius: 10px 0 0 10px;
 }
@@ -29,7 +30,7 @@ input:focus {
 }
 
 .search-btn {
-  background-color: #fff;
+  background-color: #a0a5b8;
   color: #1a293b;
   cursor: pointer;
   padding: 10px;
@@ -80,3 +81,24 @@ input:focus {
   gap: 5px;
 }
 
+.weather-five-days-list{
+    background-color: rgba(30, 38, 64, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    margin-top: 50px;
+    gap: 20px;
+}
+
+.weather-list-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.weather-list-card img{
+    width: 100px;
+}

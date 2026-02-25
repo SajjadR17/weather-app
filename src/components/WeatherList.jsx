@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-import { list } from "../data/forecast";
-import { todayList } from "../data/today";
 import sunnyImg from "../assets/sunny.png";
 import windyImg from "../assets/windy.png";
 import thunderstormImg from "../assets/thunderstorm.png";
 import snowyImg from "../assets/snowy.png";
-import sleetImg from "../assets/sleet.png";
 import partlyCloudyImg from "../assets/partly-cloudy.png";
 import partlyCloudyNightImg from "../assets/partly-cloudy-night.png";
 import rainyImg from "../assets/rainy.png";
 import hotImg from "../assets/hot.png";
 import foggyImg from "../assets/foggy.png";
+import cloudyImg from "../assets/cloudy.png";
 import coldImg from "../assets/cold.png";
 import clearNightImg from "../assets/clear-night.png";
 import feelsLikeIcon from "../assets/feels-like.png";
@@ -20,23 +18,57 @@ import "./WeatherList.css";
 
 function WeatherList() {
   const [forecast, setForecast] = useState([]);
+  const [fullForecast, setFullForecast] = useState([]);
   const [today, setToday] = useState([]);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [city, setCity] = useState("tehran");
+  const API_KEY = "44e4d04bf7840eb1b5ca2daed644e5ab";
+
+  function changeHandler(e) {
+    const value = e.target.value;
+    setSearch(value);
+  }
+
+  function searchBtnClickHandler() {
+    if (search.trim() !== "") {
+      setCity(search.toLowerCase());
+    }
+  }
 
   useEffect(() => {
     fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=tehran&appid=81952c4ae98321c99ca9aa516df2d2d5&units=metric",
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`,
     )
       .then((res) => res.json())
       .then((data) => {
-        setToday(data);
-        setLoading(false);
-        console.log(data);
+        if (Number(data.cod) === 200) {
+          setToday(data);
+        } else {
+          alert("Invalid City Name !!!");
+        }
       });
-    // const dailyList = list.filter((item) => item.dt_txt.includes("12:00:00"));
-    // setForecast(dailyList);
-  }, []);
+  }, [city]);
+
+  useEffect(() => {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`,
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (Number(data.cod) === 200) {
+          const filteredData = data.list.filter((item) =>
+            item.dt_txt.includes("12:00:00"),
+          );
+          setFullForecast(data);
+          setForecast(filteredData);
+          setLoading(false);
+        } else {
+          alert("Invalid City Name !!!");
+        }
+      });
+  }, [city]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -47,8 +79,10 @@ function WeatherList() {
   }, []);
 
   if (loading) {
-    return <div>Loading ...</div>;
+    return <h3>Loading ...</h3>;
   }
+
+  function minMaxTempHandel() {}
 
   function weatherImgHandler() {
     const weatherStatus = today.weather[0].main;
@@ -65,15 +99,19 @@ function WeatherList() {
     if (weatherStatus === "Clear") {
       if (weatherStatusIcon === "01d") {
         return sunnyImg;
-      } else if (weatherStatusIcon === "01n") {
+      }
+      if (weatherStatusIcon === "01n") {
         return clearNightImg;
       }
     }
     if (weatherStatus === "Clouds") {
       if (weatherStatusIcon === "02d") {
         return partlyCloudyImg;
-      } else if (weatherStatusIcon === "02n") {
+      }
+      if (weatherStatusIcon === "02n") {
         return partlyCloudyNightImg;
+      } else {
+        return cloudyImg;
       }
     }
     if (weatherStatus === "Rain" || weatherStatus === "drizzle") {
@@ -85,6 +123,54 @@ function WeatherList() {
     if (weatherStatus === "Snow") {
       return snowyImg;
     }
+    if (
+      weatherStatus === "Mist" ||
+      weatherStatus === "Smoke" ||
+      weatherStatus === "Haze" ||
+      weatherStatus === "Dust" ||
+      weatherStatus === "Fog" ||
+      weatherStatus === "Sand" ||
+      weatherStatus === "Ash" ||
+      weatherStatus === "Squall" ||
+      weatherStatus === "Tornado"
+    ) {
+      return foggyImg;
+    }
+  }
+
+  function listWeatherImgHandler(item) {
+    const weatherStatus = item.weather[0].main;
+    if (item.wind.speed > 15) {
+      return windyImg;
+    }
+    if (item.main.temp > 35) {
+      return hotImg;
+    }
+    if (item.main.temp < 0) {
+      return coldImg;
+    }
+    if (weatherStatus === "Clear") {
+      return sunnyImg;
+    }
+    if (weatherStatus === "Clouds") {
+      return partlyCloudyImg;
+    }
+    if (weatherStatus === "Rain" || weatherStatus === "drizzle") {
+      return rainyImg;
+    }
+    if (weatherStatus === "Thunderstorm") {
+      return thunderstormImg;
+    }
+    if (weatherStatus === "Snow") {
+      return snowyImg;
+    }
+  }
+
+  function weekDayHandel(item) {
+    const unixTimestamp = item.dt;
+    const date = new Date(unixTimestamp * 1000);
+    const dayName = date.toLocaleDateString("en-US", { weekday: "long" });
+    return dayName;
   }
 
   return (
@@ -111,8 +197,12 @@ function WeatherList() {
             type="text"
             className="search-input"
             placeholder="Enter city name"
+            value={search}
+            onChange={changeHandler}
           />
-          <div className="search-btn">Search</div>
+          <div onClick={searchBtnClickHandler} className="search-btn">
+            Search
+          </div>
         </div>
       </div>
       <div className="weather-now">
@@ -147,7 +237,24 @@ function WeatherList() {
           </div>
         </div>
       </div>
-      <div className="weather-five-days-list"></div>
+      <div className="weather-five-days-list">
+        {forecast.map((item) => {
+          return (
+            <div className="weather-list-card">
+              <span className="weekday">{weekDayHandel(item)}</span>
+              <img
+                src={listWeatherImgHandler(item)}
+                alt=""
+                className="weekday-img"
+              />
+              <span className="min-max-temp"></span>
+              <span className="weather-status">
+                {item.weather[0].description}
+              </span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
