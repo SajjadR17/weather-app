@@ -20,18 +20,22 @@ import "./WeatherList.css";
 
 function WeatherList() {
   const [forecast, setForecast] = useState([]);
-  const [today, setToday] = useState(todayList);
+  const [today, setToday] = useState([]);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // fetch("")
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setForecast(data);
-    //     console.log(data);
-    //   });
-    const dailyList = list.filter((item) => item.dt_txt.includes("12:00:00"));
-    setForecast(dailyList);
+    fetch(
+      "https://api.openweathermap.org/data/2.5/weather?q=tehran&appid=81952c4ae98321c99ca9aa516df2d2d5&units=metric",
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setToday(data);
+        setLoading(false);
+        console.log(data);
+      });
+    // const dailyList = list.filter((item) => item.dt_txt.includes("12:00:00"));
+    // setForecast(dailyList);
   }, []);
 
   useEffect(() => {
@@ -42,32 +46,43 @@ function WeatherList() {
     return () => clearInterval(timer);
   }, []);
 
+  if (loading) {
+    return <div>Loading ...</div>;
+  }
+
   function weatherImgHandler() {
-    const weatherStatus = today.weather.map((item) => item.main);
-    const weatherStatusIcon = today.weather.map((item) => item.icon);
-    if (today.wind.speed > 10) {
+    const weatherStatus = today.weather[0].main;
+    const weatherStatusIcon = today.weather[0].icon;
+    if (today.wind.speed > 15) {
       return windyImg;
-    } else if (today.main.temp > 35) {
+    }
+    if (today.main.temp > 35) {
       return hotImg;
-    } else if (today.main.temp < 0) {
+    }
+    if (today.main.temp < 0) {
       return coldImg;
-    } else if (weatherStatus === "Clear") {
+    }
+    if (weatherStatus === "Clear") {
       if (weatherStatusIcon === "01d") {
         return sunnyImg;
       } else if (weatherStatusIcon === "01n") {
         return clearNightImg;
       }
-    } else if (weatherStatus === "Clouds") {
+    }
+    if (weatherStatus === "Clouds") {
       if (weatherStatusIcon === "02d") {
         return partlyCloudyImg;
       } else if (weatherStatusIcon === "02n") {
         return partlyCloudyNightImg;
       }
-    } else if (weatherStatus === "Rain" || "drizzle") {
+    }
+    if (weatherStatus === "Rain" || weatherStatus === "drizzle") {
       return rainyImg;
-    } else if (weatherStatus === "Thunderstorm") {
+    }
+    if (weatherStatus === "Thunderstorm") {
       return thunderstormImg;
-    } else if (weatherStatus === "Snow") {
+    }
+    if (weatherStatus === "Snow") {
       return snowyImg;
     }
   }
