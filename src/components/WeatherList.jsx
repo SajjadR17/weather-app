@@ -104,7 +104,7 @@ function WeatherList() {
         <div className="weather-now-left">
           <h1 className="temp">{today.main.temp.toFixed(0)}</h1>
           <div>
-            <p className="c-sign">C</p>
+            <p className="c-sign">℃</p>
             <div className="weather-status">
               {today.weather.map((item) => item.description)}
             </div>
@@ -119,7 +119,7 @@ function WeatherList() {
                 alt=""
                 className="feels-like-temp-icon"
               />
-              <p>Feels like: {today.main.feels_like.toFixed(0)}C</p>
+              <p>Feels like: {today.main.feels_like.toFixed(0)}℃</p>
             </div>
             <div className="humidity">
               <img src={humidityIcon} alt="" className="humidity-icon" />
@@ -131,8 +131,8 @@ function WeatherList() {
             </div>
           </div>
         </div>
-        <div className="weather-five-days-list"></div>
       </div>
+      <div className="weather-five-days-list"></div>
     </div>
   );
 }
