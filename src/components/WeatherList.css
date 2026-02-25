@@ -1,0 +1,38 @@
+.weather-sec-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  margin-top: 40px;
+}
+
+.search-sec {
+  display: flex;
+  align-items: center;
+}
+
+input {
+  padding: 10px;
+  background-color: #1a293b;
+  color: #fff;
+  border: 1px solid #fff;
+  height: 40px;
+  border-radius: 10px 0 0 10px;
+}
+
+input::placeholder {
+  color: rgb(195, 195, 195);
+}
+
+input:focus {
+  outline: none;
+}
+
+.search-btn {
+  background-color: #fff;
+  color: #1a293b;
+  cursor: pointer;
+  padding: 10px;
+  height: 40px;
+  border-radius: 0 10px 10px 0;
+}
