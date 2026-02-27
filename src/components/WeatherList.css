@@ -81,24 +81,126 @@ input:focus {
   gap: 5px;
 }
 
-.weather-five-days-list{
-    background-color: rgba(30, 38, 64, 0.5);
-    padding: 20px;
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
-    margin-top: 50px;
-    gap: 20px;
+.weather-five-days-list {
+  background-color: rgba(30, 38, 64, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 50px;
+  gap: 20px;
 }
 
-.weather-list-card{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
+.weather-list-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
 
-.weather-list-card img{
-    width: 100px;
+.weather-list-card img {
+  width: 100px;
+}
+
+.overlay {
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1000%;
+  backdrop-filter: brightness(10%);
+}
+
+.modal {
+  z-index: 5;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: auto;
+  background-color: rgb(30, 38, 64);
+  border: 1px solid #cecece;
+  border-radius: 10px;
+}
+
+.close-btn {
+  cursor: pointer;
+}
+
+.modal-header {
+  display: flex;
+  padding: 10px 15px;
+  justify-content: space-between;
+}
+
+.modal-main-sec-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.modal-main-sec-error img {
+  width: 50px;
+  margin-top: 20px;
+  display: flex;
+}
+
+.modal-temp-details-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-temp-details {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(20, 24, 45, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  margin: 15px;
+  padding-bottom: 25px;
+  align-items: center;
+}
+
+.modal-temp {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.modal-temp h2 {
+  font-size: 2rem;
+}
+
+.modal-temp-details-right img {
+  width: 140px;
+}
+
+.modal-atmospheric-details{
+  margin: 15px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 10px;
+}
+
+.modal-humidity,
+.modal-wind,
+.modal-pop {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: rgba(20, 24, 45, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
 }
