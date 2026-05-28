@@ -204,3 +204,37 @@ input:focus {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.7);
 }
+
+@media (max-width:767px) {
+  .weather-sec-header{
+    flex-direction: column-reverse;
+    gap: 20px;
+    align-items: normal;
+  }
+
+  .search-sec{
+    width: 100%;
+  }
+
+  .search-btn{
+    width: 150px;
+    text-align: center;
+  }
+
+  .weather-now{
+    flex-direction: column;
+  }
+
+  .weather-five-days-list{
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .weather-list-card{
+    padding-bottom: 30px;
+    border-bottom: 1px solid #fff;
+  }
+
+  .temp{
+    margin-left: 10px;
+  }
+}

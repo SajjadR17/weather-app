@@ -40,6 +40,8 @@ function WeatherList() {
   function searchBtnClickHandler() {
     if (search.trim() !== "") {
       setCity(search.toLowerCase());
+      setLoading(true)
+      setSearch("")
     }
   }
 
@@ -52,6 +54,7 @@ function WeatherList() {
         if (Number(data.cod) === 200) {
           setToday(data);
           localStorage.setItem("lastCity", city);
+          setLoading(false)
         } else {
           setIsModalOpen(true);
           setErrorModal(true);
@@ -238,7 +241,6 @@ function WeatherList() {
                 hour12: true,
               })
               .replace(",", " |")}{" "}
-            in your time
           </p>
         </div>
         <div className="search-sec">
