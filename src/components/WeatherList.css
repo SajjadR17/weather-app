@@ -89,6 +89,8 @@ input:focus {
   grid-template-columns: repeat(5, 1fr);
   margin-top: 50px;
   gap: 20px;
+  overflow-x: auto;
+
 }
 
 .weather-list-card {
@@ -97,6 +99,7 @@ input:focus {
   align-items: center;
   justify-content: center;
   gap: 5px;
+  cursor: pointer;
 }
 
 .weather-list-card img {
@@ -212,6 +215,10 @@ input:focus {
     align-items: normal;
   }
 
+  .weather-list-card{
+    width: 130px;
+  }
+
   .search-sec{
     width: 100%;
   }
@@ -225,16 +232,11 @@ input:focus {
     flex-direction: column;
   }
 
-  .weather-five-days-list{
-    grid-template-columns: repeat(2,1fr);
-  }
-
-  .weather-list-card{
-    padding-bottom: 30px;
-    border-bottom: 1px solid #fff;
-  }
-
   .temp{
     margin-left: 10px;
+  }
+
+  .modal{
+    width: 95%;
   }
 }
