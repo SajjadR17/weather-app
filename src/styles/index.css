@@ -185,7 +185,7 @@ small {
 }
 
 .first-row {
-  margin-top: 20px;
+  margin-top: 10px;
   display: grid;
   grid-template-columns: 1.3fr 1.5fr;
   gap: 24px;

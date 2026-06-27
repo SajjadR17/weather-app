@@ -7,7 +7,7 @@ import { BsArrowDown, BsArrowDownCircle, BsArrowUp } from "react-icons/bs";
 import { WiCelsius } from "react-icons/wi";
 import { RiCelsiusFill, RiCelsiusLine } from "react-icons/ri";
 
-function CurrentWeather({ lat, lon }) {
+function CurrentWeather({ lat, setError, lon }) {
   const [currentWeatherDetails, setCurrentWeatherDetails] = useState({});
   const [now, setNow] = useState(new Date());
   const [loading, setLoading] = useState(true);
@@ -22,13 +22,14 @@ function CurrentWeather({ lat, lon }) {
         setTimezone(res.data.timezone);
       } catch (err) {
         console.log(err);
+        setError(true);
       } finally {
         setLoading(false);
       }
     };
 
     getCurrentWeatherDetails();
-  }, [lat, lon]);
+  }, [lat, lon, setError]);
 
   useEffect(() => {
     if (!timezone) return;
@@ -57,10 +58,8 @@ function CurrentWeather({ lat, lon }) {
     day: "numeric",
   });
 
-  if(loading) {
-    return (
-        <div className="current-weather-loading"></div>
-    )
+  if (loading) {
+    return <div className="current-weather-loading"></div>;
   }
 
   return (

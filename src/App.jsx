@@ -1,4 +1,5 @@
 import CurrentWeather from "./components/CurrentWeather";
+import Error from "./components/Error";
 import NavBar from "./components/NavBar";
 import { useState } from "react";
 
@@ -9,6 +10,12 @@ function App() {
   const [lon, setLon] = useState(
     localStorage.getItem("lonWeatherApp") || 51.3896004,
   );
+  const [error, setError] = useState(false);
+
+  if (error) {
+    return <Error />;
+  }
+
   return (
     <>
       <header className="container">
@@ -16,7 +23,7 @@ function App() {
       </header>
       <main className="container">
         <div className="first-row">
-          <CurrentWeather lat={lat} lon={lon} />
+          <CurrentWeather lat={lat} setError={setError} lon={lon} />
         </div>
       </main>
     </>
