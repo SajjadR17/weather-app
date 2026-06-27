@@ -10,16 +10,20 @@ import { RiCelsiusFill, RiCelsiusLine } from "react-icons/ri";
 function CurrentWeather({ lat, lon }) {
   const [currentWeatherDetails, setCurrentWeatherDetails] = useState({});
   const [now, setNow] = useState(new Date());
+  const [loading, setLoading] = useState(true);
   const [timezone, setTimezone] = useState(0);
 
   useEffect(() => {
     const getCurrentWeatherDetails = async () => {
+      setLoading(true);
       try {
         const res = await currentWeatherFetch(lat, lon);
         setCurrentWeatherDetails(res.data);
         setTimezone(res.data.timezone);
       } catch (err) {
         console.log(err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -52,6 +56,12 @@ function CurrentWeather({ lat, lon }) {
     month: "long",
     day: "numeric",
   });
+
+  if(loading) {
+    return (
+        <div className="current-weather-loading"></div>
+    )
+  }
 
   return (
     <div

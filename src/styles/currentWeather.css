@@ -15,6 +15,34 @@
     inset 0 1px rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
 }
+.current-weather-loading {
+  position: relative;
+  overflow: hidden;
+  background: #1b263b;
+  height: 300px;
+  width: 100%;
+  border-radius: 7px;
+}
+
+.current-weather-loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  animation: shimmer 1.3s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
 
 .current-weather-header {
   display: flex;
@@ -77,13 +105,13 @@
   align-items: center;
 }
 
-@media (max-width:767px) {
-    .current-weather-header{
-        flex-direction: column;
-        gap: 20px;
-    }
+@media (max-width: 767px) {
+  .current-weather-header {
+    flex-direction: column;
+    gap: 20px;
+  }
 
-    .current-weather-status-container{
-        padding: 10px;
-    }
+  .current-weather-status-container {
+    padding: 10px;
+  }
 }
