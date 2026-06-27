@@ -15,15 +15,15 @@ html {
 :root {
   --bg-primary: #050816;
   --bg-secondary: #09111f;
-  --bg-card: #0D1729;
+  --bg-card: #0d1729;
 
-  --text-primary: #CBD5E1;
-  --text-secondary: #94A3B8;
+  --text-primary: #cbd5e1;
+  --text-secondary: #94a3b8;
 
-  --accent: #8B5CF6;
-  --accent-hover: #A78BFA;
+  --accent: #8b5cf6;
+  --accent-hover: #a78bfa;
 
-  --border: rgba(255,255,255,.08);
+  --border: rgba(255, 255, 255, 0.08);
 
   --fs-h1: clamp(2rem, 4vw, 3rem);
   --fs-h2: clamp(1.5rem, 2.8vw, 2rem);
@@ -31,9 +31,64 @@ html {
   --fs-h4: 1.125rem;
 
   --fs-body: 1rem;
-  --fs-small: .875rem;
-  --fs-caption: .75rem;
+  --fs-small: 0.875rem;
+  --fs-caption: 0.75rem;
 
+  --weather-clear-day: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #1d4ed8 45%,
+    #3b82f6 100%
+  );
+
+  --weather-clear-day: radial-gradient(
+    circle at top right,
+    #7dd3fc 0%,
+    #2563eb 35%,
+    #0f172a 100%
+  );
+
+  --weather-clear-night: radial-gradient(
+    circle at top right,
+    #6366f1 0%,
+    #312e81 35%,
+    #050816 100%
+  );
+
+  --weather-cloudy: radial-gradient(
+    circle at top right,
+    #64748b 0%,
+    #334155 40%,
+    #09111f 100%
+  );
+
+  --weather-rain: radial-gradient(
+    circle at top right,
+    #38bdf8 0%,
+    #1d4ed8 35%,
+    #0b1120 100%
+  );
+
+  --weather-thunder: radial-gradient(
+    circle at top right,
+    #8b5cf6 0%,
+    #312e81 30%,
+    #020617 100%
+  );
+
+  --weather-snow: radial-gradient(
+    circle at top right,
+    #f8fafc 0%,
+    #cbd5e1 35%,
+    #64748b 100%
+  );
+
+  --weather-fog: radial-gradient(
+    circle at top right,
+    #94a3b8 0%,
+    #64748b 40%,
+    #1e293b 100%
+  );
 
   --fw-bold: 700;
   --fw-semi-bold: 600;
@@ -129,8 +184,22 @@ small {
   font-size: var(--fs-small);
 }
 
+.first-row {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1.3fr 1.5fr;
+  gap: 24px;
+}
+
 @media (max-width: 768px) {
   .container {
     width: min(calc(100% - 24px), var(--container-width));
+  }
+}
+
+@media (max-width: 900px) {
+  .first-row {
+    display: flex;
+    flex-direction: column;
   }
 }

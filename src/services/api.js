@@ -12,3 +12,15 @@ export const searchFetch = async (searchValue) => {
     return null;
   }
 };
+
+export const currentWeatherFetch = async (lat, lon) => {
+  try {
+    const res = await axios.get(
+      `${weatherApiBaseUrl}data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${import.meta.env.VITE_OPEN_WEATHER_MAP_API_KEY}`,
+    );
+    return res;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};
