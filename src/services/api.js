@@ -24,3 +24,15 @@ export const currentWeatherFetch = async (lat, lon) => {
     return null;
   }
 };
+
+export const forecastFetch = async (lat, lon) => {
+  try {
+    const res = await axios.get(
+      `${weatherApiBaseUrl}data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${import.meta.env.VITE_OPEN_WEATHER_MAP_API_KEY}`,
+    );
+    return res;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};

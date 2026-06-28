@@ -60,3 +60,13 @@ export function getWeatherIcon(icon) {
 export function getWeatherBG(icon) {
   return weatherBG[icon] || "/images/clear-day-bg.png";
 }
+
+export function formatForecastTime(timestamp, timezone) {
+  const utc = timestamp * 1000;
+  const local = new Date(utc + timezone * 1000);
+
+  return local.toLocaleTimeString("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}

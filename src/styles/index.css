@@ -188,12 +188,18 @@ small {
   margin-top: 10px;
   display: grid;
   grid-template-columns: 1.3fr 1.5fr;
-  gap: 24px;
+  gap: 10px;
 }
 
 @media (max-width: 768px) {
   .container {
     width: min(calc(100% - 24px), var(--container-width));
+  }
+}
+
+@media (max-width: 767px) {
+  .chart {
+    display: none;
   }
 }
 
