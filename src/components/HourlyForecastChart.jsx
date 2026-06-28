@@ -43,11 +43,13 @@ function CustomTooltip({ active, payload }) {
 
 export default function HourlyTemperatureChart({ forecast, timezoneName }) {
   const data = forecast.map((item) => ({
-    time: new Date(item.dt * 1000).toLocaleTimeString("en-GB", {
-      timeZone: timezoneName,
-      hour: "2-digit",
-      minute: "2-digit",
-    }),
+    time: timezoneName
+      ? new Date(item.dt * 1000).toLocaleTimeString("en-GB", {
+          timeZone: timezoneName,
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+      : "--:--",
 
     temp: Math.round(item.main.temp),
   }));

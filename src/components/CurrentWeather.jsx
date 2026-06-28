@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { currentTimeFetch, currentWeatherFetch } from "../services/api";
+import { currentWeatherFetch } from "../services/api";
 import { getWeatherBG, getWeatherIcon } from "../utils/helper";
 import "../styles/currentWeather.css";
 import { BiArrowToBottom, BiArrowToTop } from "react-icons/bi";
@@ -7,11 +7,10 @@ import { BsArrowDown, BsArrowDownCircle, BsArrowUp } from "react-icons/bs";
 import { WiCelsius } from "react-icons/wi";
 import { RiCelsiusFill, RiCelsiusLine } from "react-icons/ri";
 
-function CurrentWeather({ lat, setError, lon }) {
+function CurrentWeather({ lat, setError, lon, timezoneName }) {
   const [currentWeatherDetails, setCurrentWeatherDetails] = useState({});
   const [now, setNow] = useState(new Date());
   const [loading, setLoading] = useState(true);
-  const [timezoneName, setTimezoneName] = useState("");
 
   useEffect(() => {
     const getCurrentWeatherDetails = async () => {
@@ -27,23 +26,6 @@ function CurrentWeather({ lat, setError, lon }) {
     };
 
     getCurrentWeatherDetails();
-  }, [lat, lon, setError]);
-
-  useEffect(() => {
-    const getCurrentTime = async () => {
-      setLoading(true);
-      try {
-        const res = await currentTimeFetch(lat, lon);
-        setTimezoneName(res.data.zoneName);
-      } catch (err) {
-        console.log(err);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getCurrentTime();
   }, [lat, lon, setError]);
 
   useEffect(() => {

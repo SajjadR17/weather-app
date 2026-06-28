@@ -62,7 +62,7 @@ export function getWeatherBG(icon) {
   return weatherBG[icon] || "/images/clear-day-bg.png";
 }
 
-export function formatForecastTime(timestamp, timezoneName) {
+export function formatTime(timestamp, timezoneName) {
   return new Date(timestamp * 1000).toLocaleTimeString("en-GB", {
     timeZone: timezoneName,
     hour: "2-digit",

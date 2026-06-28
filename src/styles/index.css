@@ -199,6 +199,13 @@ small {
   margin-bottom: 50px;
 }
 
+.second-row-left-bottom{
+  display: grid;
+  grid-template-columns: 1.8fr 1.2fr;
+  margin-top: 10px;
+  gap: 10px;
+}
+
 @media (max-width: 768px) {
   .container {
     width: min(calc(100% - 24px), var(--container-width));
@@ -208,6 +215,11 @@ small {
 @media (max-width: 767px) {
   .chart {
     display: none;
+  }
+  
+  .second-row-left-bottom{
+    display: flex;
+    flex-direction: column;
   }
 }
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { currentTimeFetch, forecastFetch } from "../services/api";
-import { formatForecastTime, getWeatherIcon } from "../utils/helper";
+import { forecastFetch } from "../services/api";
+import { formatTime, getWeatherIcon } from "../utils/helper";
 import "../styles/hourlyForecast.css";
 import {
   ResponsiveContainer,
@@ -13,21 +13,17 @@ import {
 } from "recharts";
 import HourlyTemperatureChart from "./HourlyForecastChart";
 
-function HourlyForecast({ lat, setError, lon }) {
+function HourlyForecast({ lat, setError, lon, timezoneName }) {
   const [loading, setLoading] = useState(true);
   const [hourlyForecast, setHourlyForecast] = useState([]);
-  const [timezoneName, setTimezoneName] = useState("");
 
   useEffect(() => {
     const getForecast = async () => {
       setLoading(true);
       try {
         const res = await forecastFetch(lat, lon);
-        console.log(res.data)
         const forecastFilter = res.data.list.slice(0, 9);
         setHourlyForecast(forecastFilter);
-        const zone = await currentTimeFetch(lat, lon);
-        setTimezoneName(zone.data.zoneName);
       } catch (err) {
         console.log(err);
         setError(true);
@@ -50,7 +46,7 @@ function HourlyForecast({ lat, setError, lon }) {
         {hourlyForecast.map((f) => (
           <div className="hourly-forecast-card" key={f.dt}>
             <span className="hourly-forecast-card-time">
-              {formatForecastTime(f.dt, timezoneName)}
+              {timezoneName ? formatTime(f.dt, timezoneName) : "--:--"}
             </span>
             <img
               src={getWeatherIcon(f?.weather?.[0]?.icon)}

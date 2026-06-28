@@ -13,7 +13,6 @@ function CurrentWeatherStats({ lat, lon, setError }) {
       try {
         const res = await currentWeatherFetch(lat, lon);
         setWeatherStatus(res.data);
-        console.log(res.data);
       } catch (err) {
         console.log(err);
         setError(true);

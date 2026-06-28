@@ -65,7 +65,7 @@
 
 .hourly-forecast-card:hover {
   background-color: var(--bg-secondary);
-  border-color: var(--border);
+  border-color: var(--accent);
   border-radius: 5px;
 }
 
