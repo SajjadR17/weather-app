@@ -1,4 +1,5 @@
 import CurrentWeather from "./components/CurrentWeather";
+import CurrentWeatherStats from "./components/CurrentWeatherStats";
 import Error from "./components/Error";
 import HourlyForecast from "./components/HourlyForecast";
 import NavBar from "./components/NavBar";
@@ -26,6 +27,11 @@ function App() {
         <div className="first-row">
           <CurrentWeather lat={lat} setError={setError} lon={lon} />
           <HourlyForecast lat={lat} setError={setError} lon={lon} />
+        </div>
+        <div className="second-row">
+          <div className="second-row-left">
+            <CurrentWeatherStats lat={lat} setError={setError} lon={lon} />
+          </div>
         </div>
       </main>
     </>

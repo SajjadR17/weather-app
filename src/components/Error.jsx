@@ -8,7 +8,7 @@ function Error() {
       <h2>Unable to load weather</h2>
       <span>
         We couldn't fetch the latest weather data.
-        <span> Check your connection or tey again.</span>
+        <span> Check your connection or try again.</span>
       </span>
       <button className="reload-btn" onClick={() => location.reload()}>
         Try Again
