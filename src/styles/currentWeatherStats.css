@@ -6,6 +6,12 @@
 
 @media (max-width:767px) {
     .weather-stats-container{
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+
+@media (max-width:480px) {
+    .weather-stats-container{
         grid-template-columns: repeat(2,1fr);
     }
 }

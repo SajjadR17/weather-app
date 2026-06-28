@@ -98,7 +98,7 @@
 .current-weather-temp {
   font-size: 70px;
   display: flex;
-  letter-spacing:-2px;
+  letter-spacing: -2px;
   align-items: center;
 }
 
@@ -109,12 +109,14 @@
 }
 
 @media (max-width: 767px) {
+  .current-weather-status-container {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 500px) {
   .current-weather-header {
     flex-direction: column;
     gap: 20px;
-  }
-
-  .current-weather-status-container {
-    padding: 10px;
   }
 }

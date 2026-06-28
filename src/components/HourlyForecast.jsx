@@ -23,6 +23,7 @@ function HourlyForecast({ lat, setError, lon }) {
       setLoading(true);
       try {
         const res = await forecastFetch(lat, lon);
+        console.log(res.data)
         const forecastFilter = res.data.list.slice(0, 9);
         setHourlyForecast(forecastFilter);
         const zone = await currentTimeFetch(lat, lon);
