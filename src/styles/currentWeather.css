@@ -73,7 +73,8 @@
   font-size: 12px;
   color: var(--text-primary);
   background-color: #09111f6b;
-  border: qpxx solid var(--border);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   padding: 0 10px;
 }
@@ -97,6 +98,7 @@
 .current-weather-temp {
   font-size: 70px;
   display: flex;
+  letter-spacing:-2px;
   align-items: center;
 }
 

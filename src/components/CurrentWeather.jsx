@@ -67,9 +67,11 @@ function CurrentWeather({ lat, setError, lon }) {
       className="current-weather-container"
       style={{
         backgroundImage: `linear-gradient(
-      rgba(5,8,22,.35),
-      rgba(5,8,22,.55)
-        ),url(${getWeatherBG(currentWeatherDetails?.weather?.[0]?.icon)})`,
+           90deg,
+         rgba(5,8,22,.75) 0%,
+         rgba(5,8,22,.2) 45%,
+           transparent 100%
+           ),url(${getWeatherBG(currentWeatherDetails?.weather?.[0]?.icon)})`,
       }}
     >
       <div className="current-weather-header">
