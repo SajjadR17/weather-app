@@ -42,19 +42,18 @@ function CustomTooltip({ active, payload }) {
 }
 
 export default function HourlyTemperatureChart({ forecast, timezone }) {
-  const data = forecast.map((item, index) => ({
-    time:
-      index === 0
-        ? "Now"
-        : new Date((item.dt + timezone) * 1000).toLocaleTimeString("en-GB", {
-            hour: "2-digit",
-          }),
+  const data = forecast.map((item) => ({
+    time: new Date((item.dt + timezone) * 1000).toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }),
 
     temp: Math.round(item.main.temp),
   }));
 
   return (
-    <ResponsiveContainer className="chart"  width="100%" height={80}>
+    <ResponsiveContainer className="chart" width="100%" height={80}>
       <LineChart
         data={data}
         margin={{

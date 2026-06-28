@@ -31,8 +31,9 @@ const weatherBG = {
   "01d": "/images/clear-day-bg.jpg",
   "01n": "/images/clear-night-bg.jpg",
 
-  "02d": "/images/cloudy.jpg",
-  "02n": "/images/cloudy.jpg",
+  "02d": "/images/partly-cloudy-night-bg.jpg",
+  "02n": "/images/partly-cloudy-bg.jpg",
+
   "03d": "/images/cloudy-bg.jpg",
   "03n": "/images/cloudy-bg.jpg",
   "04d": "/images/cloudy-bg.jpg",
