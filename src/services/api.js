@@ -25,6 +25,18 @@ export const currentWeatherFetch = async (lat, lon) => {
   }
 };
 
+export const currentTimeFetch = async (lat, lon) => {
+  try {
+    const res = await axios.get(
+      `https://api.timezonedb.com/v2.1/get-time-zone?key=${import.meta.env.VITE_TIMEZONEDB_API_KEY}&format=json&by=position&lat=${lat}&lng=${lon}`,
+    );
+    return res;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};
+
 export const forecastFetch = async (lat, lon) => {
   try {
     const res = await axios.get(

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { currentWeatherFetch } from "../services/api";
+import { currentTimeFetch, currentWeatherFetch } from "../services/api";
 import { getWeatherBG, getWeatherIcon } from "../utils/helper";
 import "../styles/currentWeather.css";
 import { BiArrowToBottom, BiArrowToTop } from "react-icons/bi";
@@ -11,15 +11,13 @@ function CurrentWeather({ lat, setError, lon }) {
   const [currentWeatherDetails, setCurrentWeatherDetails] = useState({});
   const [now, setNow] = useState(new Date());
   const [loading, setLoading] = useState(true);
-  const [timezone, setTimezone] = useState(0);
+  const [timezoneName, setTimezoneName] = useState("");
 
   useEffect(() => {
     const getCurrentWeatherDetails = async () => {
-      setLoading(true);
       try {
         const res = await currentWeatherFetch(lat, lon);
         setCurrentWeatherDetails(res.data);
-        setTimezone(res.data.timezone);
       } catch (err) {
         console.log(err);
         setError(true);
@@ -32,31 +30,48 @@ function CurrentWeather({ lat, setError, lon }) {
   }, [lat, lon, setError]);
 
   useEffect(() => {
-    if (!timezone) return;
-
-    const updateTime = () => {
-      const utc = Date.now() + new Date().getTimezoneOffset() * 60000;
-
-      setNow(new Date(utc + timezone * 1000));
+    const getCurrentTime = async () => {
+      setLoading(true);
+      try {
+        const res = await currentTimeFetch(lat, lon);
+        setTimezoneName(res.data.zoneName);
+      } catch (err) {
+        console.log(err);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    updateTime();
+    getCurrentTime();
+  }, [lat, lon, setError]);
 
-    const timer = setInterval(updateTime, 1000);
+  useEffect(() => {
+    if (!timezoneName) return;
+
+    const timer = setInterval(() => {
+      setNow(new Date());
+    }, 1000);
 
     return () => clearInterval(timer);
-  }, [timezone]);
+  }, [timezoneName]);
 
-  const currentTime = now.toLocaleTimeString("en-GB", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+  const currentTime = timezoneName
+    ? now.toLocaleTimeString("en-GB", {
+        timeZone: timezoneName,
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+    : "--:--";
 
-  const currentDate = now.toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-  });
+  const currentDate = timezoneName
+    ? now.toLocaleDateString("en-US", {
+        timeZone: timezoneName,
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+      })
+    : "";
 
   if (loading) {
     return <div className="current-weather-loading"></div>;
@@ -97,7 +112,7 @@ function CurrentWeather({ lat, setError, lon }) {
       </div>
       <div className="current-weather-details">
         <h1 className="current-weather-temp">
-          {currentWeatherDetails?.main?.temp.toFixed(0)}°
+          {Math.round(currentWeatherDetails?.main?.temp)}°
         </h1>
         <span className="current-weather-feels-like-temp">
           Feels like {currentWeatherDetails?.main?.feels_like.toFixed(0)}°

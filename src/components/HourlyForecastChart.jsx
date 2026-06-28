@@ -41,12 +41,12 @@ function CustomTooltip({ active, payload }) {
   );
 }
 
-export default function HourlyTemperatureChart({ forecast, timezone }) {
+export default function HourlyTemperatureChart({ forecast, timezoneName }) {
   const data = forecast.map((item) => ({
-    time: new Date((item.dt + timezone) * 1000).toLocaleTimeString("en-GB", {
+    time: new Date(item.dt * 1000).toLocaleTimeString("en-GB", {
+      timeZone: timezoneName,
       hour: "2-digit",
       minute: "2-digit",
-      hour12: false,
     }),
 
     temp: Math.round(item.main.temp),

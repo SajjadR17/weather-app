@@ -31,8 +31,8 @@ const weatherBG = {
   "01d": "/images/clear-day-bg.jpg",
   "01n": "/images/clear-night-bg.jpg",
 
-  "02d": "/images/partly-cloudy-night-bg.jpg",
-  "02n": "/images/partly-cloudy-bg.jpg",
+  "02d": "/images/partly-cloudy-bg.jpg",
+  "02n": "/images/partly-cloudy-night-bg.jpg",
 
   "03d": "/images/cloudy-bg.jpg",
   "03n": "/images/cloudy-bg.jpg",
@@ -62,11 +62,9 @@ export function getWeatherBG(icon) {
   return weatherBG[icon] || "/images/clear-day-bg.png";
 }
 
-export function formatForecastTime(timestamp, timezone) {
-  const utc = timestamp * 1000;
-  const local = new Date(utc + timezone * 1000);
-
-  return local.toLocaleTimeString("en-GB", {
+export function formatForecastTime(timestamp, timezoneName) {
+  return new Date(timestamp * 1000).toLocaleTimeString("en-GB", {
+    timeZone: timezoneName,
     hour: "2-digit",
     minute: "2-digit",
   });
