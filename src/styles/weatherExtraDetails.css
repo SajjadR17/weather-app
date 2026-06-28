@@ -6,6 +6,15 @@
   border: 1px solid var(--border);
   border-radius: 7px;
   background-color: var(--bg-card);
+  transition: all 0.2s ease;
+}
+
+.extra-details-container:hover {
+  border-color: var(--accent);
+}
+
+.extra-details-container:hover .extra-detail-card {
+  border-color: var(--accent);
 }
 
 .extra-details-container-loading {
@@ -51,6 +60,7 @@
   padding: 10px;
   justify-content: space-between;
   font-size: 14px;
+  transition: all 0.2s ease;
   border-bottom: 1px solid var(--border);
 }
 
@@ -79,7 +89,7 @@
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .extra-details-container-loading{
+  .extra-details-container-loading {
     height: 300px;
   }
 
