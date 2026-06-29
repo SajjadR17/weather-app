@@ -82,11 +82,16 @@ nav {
   width: 100%;
   background-color: transparent;
   color: var(--text-primary);
+  caret-color: var(--accent);
   border: none;
 }
 
 .search-input-container input:focus {
   outline: none;
+}
+
+.search-input-container input:focus .search-input-container {
+  border-color: var(--accent);
 }
 
 .search-input-container input::placeholder {
@@ -98,7 +103,12 @@ nav {
   border: 1px solid var(--border);
   border-radius: 7px;
   padding: 10px 10px;
+  transition: all 0.2s ease;
   color: var(--text-primary);
+}
+
+.user-location-btn:hover{
+  border-color: var(--accent);
 }
 
 .search-loading,

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import StatCard from "./StatCard";
 import { currentWeatherFetch } from "../services/api";
 import "../styles/currentWeatherStats.css";
+import { getWindDirection } from "../utils/helper";
 
 function CurrentWeatherStats({ lat, lon, setError }) {
   const [weatherStatus, setWeatherStatus] = useState({});
@@ -121,6 +122,7 @@ function CurrentWeatherStats({ lat, lon, setError }) {
         icon={"/images/wind-deg.png"}
         title={"Wind deg"}
         value={`${weatherStatus?.wind?.deg}°`}
+        tip={getWindDirection(weatherStatus?.wind?.deg)}
       />
     </div>
   );
