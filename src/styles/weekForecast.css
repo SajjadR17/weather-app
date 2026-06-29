@@ -55,7 +55,7 @@
 .five-days-forecast-card-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
 
 .five-days-forecast-card-left img {

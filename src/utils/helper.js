@@ -154,6 +154,7 @@ export function getWeeklyForecast(list) {
 }
 
 export function formatDay(date, timezoneName) {
+  if (!timezoneName) return "---";
   return new Date(date).toLocaleDateString("en-US", {
     weekday: "short",
     timeZone: timezoneName,
