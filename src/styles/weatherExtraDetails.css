@@ -37,6 +37,7 @@
 
 .extra-details-container-header {
   font-weight: 600;
+  color: var(--text-primary);
 }
 
 .extra-details {

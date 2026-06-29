@@ -38,6 +38,7 @@
 
 .air-pollution-container-header {
   font-weight: 600;
+  color: var(--text-primary);
 }
 
 .air-pollution-details {

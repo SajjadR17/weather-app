@@ -38,6 +38,7 @@
 
 .five-days-forecast-container-header {
   font-weight: 600;
+  color: var(--text-primary);
 }
 
 .five-days-forecast-card {
