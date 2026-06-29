@@ -2,7 +2,7 @@
 
 <p align="center">
   <b>A modern, responsive weather application built with React, JavaScript, and OpenWeather APIs.</b><br>
-  🌐 <a href="">Live Demo</a> •
+  🌐 <a href="https://weatherly-app-sr.netlify.app/">Live Demo</a> •
   💾 <a href="https://github.com/SajjadR17/weather-app.git">GitHub Repository</a>
 </p>
 
@@ -94,7 +94,7 @@ This project was built to practice real-world React development including API in
 
 # 🚀 Live Demo
 
-🔗
+🔗 https://weatherly-app-sr.netlify.app/
 
 ---
 
