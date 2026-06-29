@@ -134,7 +134,13 @@ function NavBar({ setLat, setLon }) {
             )}
           </div>
         </div>
-        <button className="user-location-btn" onClick={getUserLocation}>
+        <button
+          className="user-location-btn"
+          onClick={() => {
+            getUserLocation();
+            setSearchInputValue("");
+          }}
+        >
           <GrLocation size={25} />
         </button>
       </nav>
