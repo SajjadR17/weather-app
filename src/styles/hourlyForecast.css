@@ -66,5 +66,12 @@
 
 .hourly-forecast-card img {
   width: 70px;
-  height: 50px;
+  height: 40px;
+}
+
+@media (max-width: 767px) {
+  .hourly-forecast-card img {
+    width: 70px;
+    height: 30px;
+  }
 }
