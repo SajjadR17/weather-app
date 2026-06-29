@@ -48,3 +48,15 @@ export const forecastFetch = async (lat, lon) => {
     return null;
   }
 };
+
+export const airPollutionFetch = async (lat, lon) => {
+  try {
+    const res = await axios.get(
+      `${weatherApiBaseUrl}data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_OPEN_WEATHER_MAP_API_KEY}`,
+    );
+    return res;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};

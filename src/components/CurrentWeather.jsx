@@ -14,6 +14,7 @@ function CurrentWeather({ lat, setError, lon, timezoneName }) {
 
   useEffect(() => {
     const getCurrentWeatherDetails = async () => {
+      setLoading(true);
       try {
         const res = await currentWeatherFetch(lat, lon);
         setCurrentWeatherDetails(res.data);

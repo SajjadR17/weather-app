@@ -34,62 +34,6 @@ html {
   --fs-small: 0.875rem;
   --fs-caption: 0.75rem;
 
-  --weather-clear-day: linear-gradient(
-    135deg,
-    #0f172a 0%,
-    #1d4ed8 45%,
-    #3b82f6 100%
-  );
-
-  --weather-clear-day: radial-gradient(
-    circle at top right,
-    #7dd3fc 0%,
-    #2563eb 35%,
-    #0f172a 100%
-  );
-
-  --weather-clear-night: radial-gradient(
-    circle at top right,
-    #6366f1 0%,
-    #312e81 35%,
-    #050816 100%
-  );
-
-  --weather-cloudy: radial-gradient(
-    circle at top right,
-    #64748b 0%,
-    #334155 40%,
-    #09111f 100%
-  );
-
-  --weather-rain: radial-gradient(
-    circle at top right,
-    #38bdf8 0%,
-    #1d4ed8 35%,
-    #0b1120 100%
-  );
-
-  --weather-thunder: radial-gradient(
-    circle at top right,
-    #8b5cf6 0%,
-    #312e81 30%,
-    #020617 100%
-  );
-
-  --weather-snow: radial-gradient(
-    circle at top right,
-    #f8fafc 0%,
-    #cbd5e1 35%,
-    #64748b 100%
-  );
-
-  --weather-fog: radial-gradient(
-    circle at top right,
-    #94a3b8 0%,
-    #64748b 40%,
-    #1e293b 100%
-  );
-
   --fw-bold: 700;
   --fw-semi-bold: 600;
   --fw-medium: 500;
@@ -191,7 +135,7 @@ small {
   gap: 10px;
 }
 
-.second-row{
+.second-row {
   margin-top: 10px;
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -199,11 +143,17 @@ small {
   margin-bottom: 50px;
 }
 
-.second-row-left-bottom{
+.second-row-left-bottom {
   display: grid;
   grid-template-columns: 1.8fr 1.2fr;
   margin-top: 10px;
   gap: 10px;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @media (max-width: 768px) {
@@ -216,17 +166,21 @@ small {
   .chart {
     display: none;
   }
-  
-  .second-row-left-bottom{
+
+  .second-row-left-bottom {
     display: flex;
     flex-direction: column;
   }
 }
 
 @media (max-width: 1050px) {
-  .first-row,
-  .second-row {
+  .first-row {
     display: flex;
     flex-direction: column;
+  }
+
+  .second-row {
+    display: flex;
+    flex-direction: column-reverse;
   }
 }

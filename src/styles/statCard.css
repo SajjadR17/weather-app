@@ -38,12 +38,6 @@
   animation: shimmer 1.3s infinite;
 }
 
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
-
 .stat-card img {
   width: 30px;
 }

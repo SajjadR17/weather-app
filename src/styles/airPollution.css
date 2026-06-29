@@ -1,0 +1,78 @@
+.air-pollution-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background-color: var(--bg-card);
+  transition: all 0.2s ease;
+}
+
+.air-pollution-container-loading {
+  position: relative;
+  overflow: hidden;
+  border-radius: 7px;
+  background: #1b263b;
+  height: 200px;
+  width: 100%;
+}
+
+.air-pollution-container-loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  animation: shimmer 1.3s ease;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  transform: translateX(-100px);
+}
+
+.air-pollution-container:hover {
+  border-color: var(--accent);
+}
+
+.air-pollution-container-header {
+  font-weight: 600;
+}
+
+.air-pollution-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.air-pollution-detail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.air-pollution-detail.Fair {
+  color: green;
+}
+
+.air-pollution-detail.Good {
+  color: yellow;
+}
+
+.air-pollution-detail.Moderate {
+  color: orange;
+}
+
+.air-pollution-detail.Poor {
+  color: red;
+}
+
+.air-pollution-detail.Very-Poor {
+  color: purple;
+}
+
+.air-pollution-status,
+.air-pollution-advice {
+  font-size: 14px;
+}

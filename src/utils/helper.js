@@ -63,9 +63,99 @@ export function getWeatherBG(icon) {
 }
 
 export function formatTime(timestamp, timezoneName) {
-  return new Date(timestamp * 1000).toLocaleTimeString("en-GB", {
+  if (!timezoneName) return "--:--";
+
+  try {
+    return new Date(timestamp * 1000).toLocaleTimeString("en-GB", {
+      timeZone: timezoneName,
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  } catch {
+    return "--:--";
+  }
+}
+
+export function getAirQualityTip(aqi) {
+  switch (aqi) {
+    case 1:
+      return {
+        status: "Good",
+        tip: "Air quality is excellent. Perfect for outdoor activities.",
+      };
+
+    case 2:
+      return {
+        status: "Fair",
+        tip: "Air quality is acceptable for most people.",
+      };
+
+    case 3:
+      return {
+        status: "Moderate",
+        tip: "Sensitive people should limit prolonged outdoor activities.",
+      };
+
+    case 4:
+      return {
+        status: "Poor",
+        tip: "Reduce outdoor activities and keep windows closed if possible.",
+      };
+
+    case 5:
+      return {
+        status: "Very-Poor",
+        tip: "Avoid outdoor activities and wear a mask if you need to go outside.",
+      };
+
+    default:
+      return {
+        status: "Unknown",
+        tip: "Air quality information is unavailable.",
+      };
+  }
+}
+
+export function getWeeklyForecast(list) {
+  const filteredDays = {};
+
+  list.forEach((item) => {
+    const date = item.dt_txt.slice(0, 11);
+
+    if (!filteredDays[date]) {
+      filteredDays[date] = {
+        date,
+        min: item.main.temp_min,
+        max: item.main.temp_max,
+        icon: item.weather[0].icon,
+      };
+    }
+
+    if (item.main.temp_min < filteredDays[date].min) {
+      filteredDays[date].min = item.main.temp_min;
+    }
+
+    if (item.main.temp_max > filteredDays[date].max) {
+      filteredDays[date].max = item.main.temp_max;
+    }
+
+    const weather = item.weather[0].main;
+
+    if (
+      weather === "Thunderstorm" ||
+      weather === "Snow" ||
+      weather === "Rain"
+    ) {
+      filteredDays[date].icon = item.weather[0].icon;
+    }
+  });
+
+  return Object.values(filteredDays);
+}
+
+export function formatDay(date, timezoneName) {
+  return new Date(date).toLocaleDateString("en-US", {
+    weekday: "short",
     timeZone: timezoneName,
-    hour: "2-digit",
-    minute: "2-digit",
   });
 }

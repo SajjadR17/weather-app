@@ -6,6 +6,8 @@ import NavBar from "./components/NavBar";
 import { useEffect, useState } from "react";
 import WeatherExtraDetails from "./components/WeatherExtraDetails";
 import { currentTimeFetch } from "./services/api";
+import AirPollution from "./components/AirPollution";
+import WeekForecast from "./components/WeekForecast";
 
 function App() {
   const [lat, setLat] = useState(
@@ -65,8 +67,15 @@ function App() {
                 setError={setError}
                 lon={lon}
               />
+              <AirPollution lat={lat} setError={setError} lon={lon} />
             </div>
           </div>
+          <WeekForecast
+            lat={lat}
+            timezoneName={timezoneName}
+            setError={setError}
+            lon={lon}
+          />
         </div>
       </main>
     </>

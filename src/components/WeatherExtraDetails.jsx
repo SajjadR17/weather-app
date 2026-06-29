@@ -60,7 +60,7 @@ function WeatherExtraDetails({ lat, lon, setError, timezoneName }) {
         />
         <ExtraDetailCard
           name="Rain chance"
-          value={`${chanceOfRain}%`}
+          value={`${chanceOfRain ? chanceOfRain : 0}%`}
           icon="/images/rain-chance.png"
         />
         <ExtraDetailCard
@@ -70,7 +70,7 @@ function WeatherExtraDetails({ lat, lon, setError, timezoneName }) {
         />
         <ExtraDetailCard
           name="Wind gust"
-          value={`${weatherDetailsCurrent?.wind?.gust} m/s`}
+          value={`${weatherDetailsCurrent.wind.gust ? weatherDetailsCurrent.wind.gust : 0} m/s`}
           icon="/images/wind.png"
         />
       </div>
