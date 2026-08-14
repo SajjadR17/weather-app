@@ -65,8 +65,10 @@
 }
 
 .hourly-forecast-card img {
-  width: 70px;
-  height: 40px;
+  min-width: 48px;
+  min-height: 48px;
+  width: 48px;
+  height: 48px;
 }
 
 @media (max-width: 767px) {

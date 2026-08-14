@@ -174,13 +174,15 @@ small {
 }
 
 @media (max-width: 1050px) {
-  .first-row {
-    display: flex;
-    flex-direction: column;
-  }
-
   .second-row {
     display: flex;
     flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 1250px) {
+  .first-row {
+    display: flex;
+    flex-direction: column;
   }
 }
